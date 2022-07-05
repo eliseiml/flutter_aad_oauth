@@ -12,14 +12,17 @@ class AuthorizationRequest {
   bool? fullScreen;
   bool? clearCookies;
 
-  AuthorizationRequest(Config config, {bool fullScreen = true, bool clearCookies = false}) {
+  AuthorizationRequest(Config config,
+      {bool fullScreen = true, bool clearCookies = false}) {
     url = config.authorizationUrl;
     redirectUrl = config.redirectUri;
     parameters = {
+      'p': config.policy,
       'client_id': config.clientId,
       'response_type': config.responseType,
       'redirect_uri': config.redirectUri,
-      'scope': config.scope
+      'scope': config.scope,
+      'prompt': config.prompt,
     };
     if (kIsWeb) {
       parameters.addAll({'nonce': config.nonce});

@@ -9,9 +9,10 @@ class TokenRequestDetails {
     url = config.tokenUrl;
     params = {
       'client_id': config.clientId,
+      'grant_type': 'authorization_code',
+      'scope': config.scope,
       'code': code,
       'redirect_uri': config.redirectUri,
-      'grant_type': 'authorization_code'
     };
 
     if (config.resource != null) {
@@ -22,6 +23,9 @@ class TokenRequestDetails {
       params!.putIfAbsent('client_secret', () => config.clientSecret);
     }
 
-    headers = {'Accept': 'application/json', 'Content-Type': config.contentType};
+    headers = {
+      'Accept': 'application/json',
+      'Content-Type': config.contentType
+    };
   }
 }
