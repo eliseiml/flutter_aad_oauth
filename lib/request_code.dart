@@ -36,22 +36,14 @@ class RequestCode {
   }
 
   _mobileAuth(String initialURL) async {
-    // if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView(); // webview_flutter: ^3.0.0 BREAKING CHANGE Not necessary
-
     var webView = WebView(
       initialUrl: initialURL,
       javascriptMode: JavascriptMode.unrestricted,
       onPageFinished: (url) => _getUrlData(url),
-      onWebResourceError: (error) {
-        //debugPrint(error.description);
-      },
-      navigationDelegate: (request) {
-        if (request.url.startsWith(_config.redirectUri)) {
-          _getUrlData(request.url);
-          return NavigationDecision.prevent;
-        }
-        return NavigationDecision.navigate;
-      },
+      navigationDelegate: (request) =>
+          request.url.startsWith(_config.redirectUri)
+              ? NavigationDecision.prevent
+              : NavigationDecision.navigate,
     );
 
     await Navigator.of(_config.context!).push(
@@ -71,13 +63,6 @@ class RequestCode {
     var token = uri.queryParameters['code'];
     if (token != null) {
       _onCodeListener.add(token);
-      Navigator.of(_config.context!).pop();
-    }
-
-    var idToken = uri.queryParameters['id_token'];
-    if (idToken != null) {
-      _onCodeListener.add(idToken);
-      //debugPrint('----- Navigate back -----');
       Navigator.of(_config.context!).pop();
     }
   }
