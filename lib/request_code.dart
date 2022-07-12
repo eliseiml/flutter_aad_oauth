@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart'
     show MaterialPageRoute, Navigator, SafeArea;
@@ -40,10 +41,16 @@ class RequestCode {
       initialUrl: initialURL,
       javascriptMode: JavascriptMode.unrestricted,
       onPageFinished: (url) => _getUrlData(url),
-      navigationDelegate: (request) =>
-          request.url.startsWith(_config.redirectUri)
-              ? NavigationDecision.prevent
-              : NavigationDecision.navigate,
+      navigationDelegate: (request) {
+        if (request.url.startsWith(_config.redirectUri)) {
+          if (Platform.isIOS) {
+            _getUrlData(request.url);
+          }
+          return NavigationDecision.prevent;
+        } else {
+          return NavigationDecision.navigate;
+        }
+      },
     );
 
     await Navigator.of(_config.context!).push(
