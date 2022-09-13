@@ -5,42 +5,55 @@ import 'dart:async';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uni_links/uni_links.dart';
 
-import 'helper/auth_storage.dart';
-import 'model/config.dart';
-import 'model/token.dart';
-import 'request_code.dart';
-import 'request_token.dart';
-import 'request_token_web.dart';
+import 'helper/_helper.dart';
+import 'model/_model.dart';
+import 'request/_request.dart';
+
+export 'model/_model.dart' show Config;
 
 class FlutterAadOauth {
   static late Config _config;
   AuthStorage? _authStorage;
   Token? _token;
-  late RequestCode _requestCode;
-  late RequestTokenWeb _requestTokenWeb;
+  late IRequestCode _requestCode;
   late RequestToken _requestToken;
-  late String tokenIdentifier;
+  final _logger = FlutterAadLogger();
+  Function(String)? loginCallback;
 
-  FlutterAadOauth(config, {this.tokenIdentifier = ''}) {
+  FlutterAadOauth(
+    config, {
+    this.loginCallback,
+  }) {
     FlutterAadOauth._config = config;
-    _authStorage = _authStorage ?? AuthStorage(tokenIdentifier: tokenIdentifier);
-    if (kIsWeb) {
-      _requestTokenWeb = RequestTokenWeb(_config);
-    } else {
-      _requestCode = RequestCode(_config);
-    }
+    _authStorage = _authStorage ?? AuthStorage();
+    _requestCode = kIsWeb ? RequestCodeWeb(_config) : RequestCode(_config);
     _requestToken = RequestToken(_config);
+  }
+
+  Future<void> initialize() async {
+    if (!kIsWeb) return;
+    try {
+      final initialLink = await getInitialLink();
+      _logger.log('INITIAL LINK: $initialLink');
+
+      if (initialLink == null || initialLink.isEmpty) return;
+      final uri = Uri.parse(initialLink.replaceAll('#', '?'));
+      final code = uri.queryParameters['code'];
+      if (code != null && code.isNotEmpty) {
+        _logger.log('Code: $code');
+        await _performFullAuthFlow(authCode: code);
+      }
+    } on Exception catch (e) {
+      _logger.log('Init error: $e');
+    }
   }
 
   void setContext(BuildContext context) {
     _config.context = context;
     _requestToken.setContext(context);
-    if (kIsWeb) {
-      _requestTokenWeb.setContext(context);
-    } else {
-      _requestCode.setContext(context);
-    }
+    _requestCode.setContext(context);
   }
 
   Future<void> login() async {
@@ -91,7 +104,7 @@ class FlutterAadOauth {
   }
 
   Future<bool> tokenIsValid({refreshIfNot = true}) async {
-    _token ??= await _authStorage?.loadTokenToCache();
+    _token ??= await _authStorage?.loadTokenFromCache();
     if (Token.tokenIsValid(_token)) return true;
     if (refreshIfNot) {
       await _performRefreshAuthFlow();
@@ -103,17 +116,15 @@ class FlutterAadOauth {
 
   Future<void> logout() async {
     await _authStorage?.clear();
-    if (!kIsWeb) {
-      await _requestCode.clearCookies();
-    }
+    await _requestCode.clearCookies();
     _token = null;
     FlutterAadOauth(_config);
   }
 
   Future<void> _performAuthorization() async {
     // load token from cache
-    _token = await _authStorage?.loadTokenToCache();
-    //still have refreh token / try to get new access token with refresh token
+    _token = await _authStorage?.loadTokenFromCache();
+    //still have refresh token / try to get new access token with refresh token
     if (_token?.refreshToken != null) {
       await _performRefreshAuthFlow();
     } else {
@@ -128,15 +139,15 @@ class FlutterAadOauth {
     await _authStorage!.saveTokenToCache(_token);
   }
 
-  Future<void> _performFullAuthFlow() async {
-    String? code;
+  Future<void> _performFullAuthFlow({String? authCode}) async {
+    var code = authCode;
     try {
-      if (kIsWeb) {
-        _token = await _requestTokenWeb.requestToken();
-      } else {
-        code = await _requestCode.requestCode();
-        _token = await _requestToken.requestToken(code);
+      code ??= await _requestCode.requestCode();
+      _token = await _requestToken.requestToken(code);
+      if (_token != null && _token!.accessToken != null) {
+        loginCallback!(_token!.accessToken!);
       }
+      _logger.log('Token: $_token');
     } catch (e) {
       rethrow;
     }
@@ -157,7 +168,7 @@ class FlutterAadOauth {
   Future<void> _removeOldTokenOnFirstLogin() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     const _keyFreshInstall = 'freshInstall';
-    if (!prefs.getKeys().contains(_keyFreshInstall)) {
+    if (!prefs.containsKey(_keyFreshInstall)) {
       await logout();
       await prefs.setBool(_keyFreshInstall, false);
     }

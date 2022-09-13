@@ -1,6 +1,5 @@
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+part of '../_data.dart';
 
-import '../i_storage.dart';
 
 class MobileStorage extends IStorage {
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();

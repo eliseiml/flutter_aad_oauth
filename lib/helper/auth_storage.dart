@@ -1,12 +1,4 @@
-import 'dart:async';
-import 'dart:convert' as convert;
-
-import 'package:flutter/foundation.dart' show kIsWeb;
-
-import '../data/i_storage.dart';
-import '../data/implementations/mobile_storage.dart';
-import '../data/implementations/web_storage.dart';
-import '../model/token.dart';
+part of '_helper.dart';
 
 class AuthStorage {
   static AuthStorage shared = AuthStorage();
@@ -26,7 +18,7 @@ class AuthStorage {
     await _storage.write(key: _identifier, value: json);
   }
 
-  Future<T?> loadTokenToCache<T extends Token>() async {
+  Future<T?> loadTokenFromCache<T extends Token>() async {
     var json = await _storage.read(key: _identifier);
     if (json == null) return null;
     try {

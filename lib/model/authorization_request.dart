@@ -1,8 +1,5 @@
 // ignore_for_file: prefer_initializing_formals
-
-import 'package:flutter/foundation.dart' show kIsWeb;
-
-import '../model/config.dart';
+part of '_model.dart';
 
 class AuthorizationRequest {
   String? url;
@@ -23,7 +20,10 @@ class AuthorizationRequest {
       'redirect_uri': config.redirectUri,
       'scope': config.scope,
       'prompt': config.prompt,
+      'code_challenge': config.codeChallenge,
+      'code_challenge_method': config.codeChallengeMethod
     };
+
     if (kIsWeb) {
       parameters.addAll({'nonce': config.nonce});
     }

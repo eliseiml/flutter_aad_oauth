@@ -1,6 +1,4 @@
-import 'package:universal_html/html.dart';
-
-import '../i_storage.dart';
+part of '../_data.dart';
 
 class WebStorage extends IStorage {
   @override

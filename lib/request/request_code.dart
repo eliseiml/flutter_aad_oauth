@@ -1,15 +1,6 @@
-import 'dart:async';
-import 'dart:io';
+part of '_request.dart';
 
-import 'package:flutter/material.dart'
-    show MaterialPageRoute, Navigator, SafeArea;
-import 'package:flutter/widgets.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-
-import 'model/config.dart';
-import 'request/authorization_request.dart';
-
-class RequestCode {
+class RequestCode extends IRequestCode {
   final StreamController<String?> _onCodeListener = StreamController();
   final Config _config;
   late AuthorizationRequest _authorizationRequest;
@@ -20,9 +11,10 @@ class RequestCode {
     _authorizationRequest = AuthorizationRequest(config);
   }
 
+  @override
   Future<String?> requestCode() async {
     String? code;
-    final String urlParams = _constructUrlParams();
+    final String urlParams = constructUrlParams(_authorizationRequest.parameters);
     if (_config.context != null) {
       String initialURL =
           ('${_authorizationRequest.url}?$urlParams').replaceAll(' ', '%20');
@@ -74,6 +66,7 @@ class RequestCode {
     }
   }
 
+  @override
   Future<void> clearCookies() async {
     await CookieManager().clearCookies();
   }
@@ -81,16 +74,7 @@ class RequestCode {
   Stream<String?> get _onCode =>
       _onCodeStream ??= _onCodeListener.stream.asBroadcastStream();
 
-  String _constructUrlParams() =>
-      _mapToQueryParams(_authorizationRequest.parameters);
-
-  String _mapToQueryParams(Map<String, String> params) {
-    final queryParams = <String>[];
-    params
-        .forEach((String key, String value) => queryParams.add('$key=$value'));
-    return queryParams.join('&');
-  }
-
+  @override
   void setContext(BuildContext context) {
     _config.context = context;
   }

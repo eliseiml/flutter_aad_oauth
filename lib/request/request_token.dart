@@ -1,13 +1,4 @@
-import 'dart:async';
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-
-import 'model/config.dart';
-import 'model/token.dart';
-import 'request/token_refresh_request.dart';
-import 'request/token_request.dart';
+part of '_request.dart';
 
 class RequestToken {
   late final Config _config;

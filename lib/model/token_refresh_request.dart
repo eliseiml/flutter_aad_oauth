@@ -1,4 +1,4 @@
-import '../model/config.dart';
+part of '_model.dart';
 
 class TokenRefreshRequestDetails {
   String? url;

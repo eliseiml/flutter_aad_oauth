@@ -5,32 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33d14703-fb0c-4d09-b384-5e0b0bfdea7f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/_data.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/helper/_helper.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/helper/aad_logger.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/model/_model.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/request/_request.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/request/i_request_code.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/example_lib_main_dart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/example_lib_main_dart.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/example/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Podfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flutter_aad_oauth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_aad_oauth.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/i_storage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/i_storage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/implementations/mobile_storage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/implementations/mobile_storage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/implementations/web_storage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/implementations/web_storage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_aad_oauth.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_aad_oauth.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/helper/auth_storage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/helper/auth_storage.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/model/config.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/config.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/request_code.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/request_code.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/request_token_web.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/request_token_web.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/token.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/token.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/request/authorization_request.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/authorization_request.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/request/token_refresh_request.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/token_refresh_request.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/request/token_request.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/token_request.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/request_code.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/request/request_code.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/request_token.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/request/request_token.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/request_token_web.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/request/request_code_web.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/flutter_aad_oauth_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/flutter_aad_oauth_test.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KotlinMultiplatform">
+    <allAvailableExecutables />
   </component>
   <component name="ProjectId" id="26IC3w75QIkBdIngl21FUvvqUoI" />
   <component name="ProjectView">
@@ -46,6 +63,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="true" />
@@ -53,6 +72,12 @@
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/request" />
+      <recent name="$PROJECT_DIR$/lib/model" />
+    </key>
   </component>
   <component name="RunManager" selected="Flutter.example/lib/main.dart">
     <configuration name="Verify Platform version" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
@@ -71,6 +96,12 @@
       <option name="useRegexp" value="false" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Flutter.example/lib/main.dart" />
+      <item itemvalue="Flutter Test.tests in flutter_aad_oauth_test.dart" />
+      <item itemvalue="Flutter Test.tests in widget_test.dart" />
+      <item itemvalue="Flutter Test.Verify Platform version" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Flutter Test.Verify Platform version" />
@@ -106,5 +137,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

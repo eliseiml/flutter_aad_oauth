@@ -1,7 +1,6 @@
-import 'package:flutter/widgets.dart' show BuildContext;
+part of '_model.dart';
 
 class Config {
-  final String? azureTenantId;
   final String clientId;
   final String scope;
   final String responseType;
@@ -9,16 +8,27 @@ class Config {
   final String? clientSecret;
   final String? resource;
   final String contentType;
-  BuildContext? context;
-  String? authorizationUrl;
-  String? tokenUrl;
   final String nonce;
   final String tenant;
   final String policy;
   final String prompt;
+  BuildContext? context;
+  String? authorizationUrl;
+  String? tokenUrl;
+
+  /*
+  * codeVerifier is randomly created string (should be longer than 32 symbols);
+  * codeChallenge is SHA256 checksum taken from codeVerifier;
+  * These parameters are used for requests security. They should be created here,
+  * on the client's side.
+  *
+  * In this case they are hardcoded as we don't need this option
+  */
+  String get codeChallenge => '_r67lcj4MoDNBAkhxS7ke_YKhKCBAiM0SgzNCagbCxo';
+  String get codeVerifier => '1qaz2wsx3edc4rfv5tgb6yhn1234567890qwertyuiop';
+  String get codeChallengeMethod => 'S256';
 
   Config({
-    this.azureTenantId,
     required this.tenant,
     required this.clientId,
     required this.scope,

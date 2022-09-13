@@ -1,4 +1,4 @@
-import '../model/config.dart';
+part of '_model.dart';
 
 class TokenRequestDetails {
   String? url;
@@ -13,6 +13,7 @@ class TokenRequestDetails {
       'scope': config.scope,
       'code': code,
       'redirect_uri': config.redirectUri,
+      'code_verifier': config.codeVerifier,
     };
 
     if (config.resource != null) {

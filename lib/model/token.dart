@@ -1,3 +1,5 @@
+part of '_model.dart';
+
 class Token {
   //offset is subtracted from expire time
   final expireOffSet = 5;
